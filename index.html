@@ -63,3 +63,42 @@
     </div>
 
     <div v-else class="min-h-screen">
+
+        <nav class="navbar-spa">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between h-33"> 
+                    
+                    <div class="flex items-center">
+                        <a class="flex items-center text-2xl font-extrabold text-gray-800 logo-glow font-serif-heading" @click="changeView('dashboard')" style="cursor: pointer;">
+                            <img src="Logo.png" alt="Glow Spa Logo" class="h-28 w-auto mr-3 object-contain">
+                            Glow Spa
+                        </a>
+                    </div>
+
+                    <div class="hidden sm:flex sm:space-x-8 items-center">
+                        <a @click="changeView('dashboard')" 
+                           :class="['flex items-center px-3 pt-1 border-b-2 text-sm font-medium transition duration-150', 
+                                     currentView === 'dashboard' ? 'border-spa-primary text-spa-primary' : 'border-transparent text-gray-600 hover:text-gray-900 hover:border-spa-accent']">
+                            <i class="fas fa-calendar-check mr-2"></i> Mis Reservas
+                        </a>
+
+                        <a @click="changeView('servicios')" 
+                           :class="['flex items-center px-3 pt-1 border-b-2 text-sm font-medium transition duration-150', 
+                                     currentView === 'servicios' ? 'border-spa-primary text-spa-primary' : 'border-transparent text-gray-600 hover:text-gray-900 hover:border-spa-accent']">
+                            <i class="fas fa-concierge-bell mr-2"></i> Catálogo
+                        </a>
+
+                        <a @click="changeView('agendar')" 
+                           :class="['flex items-center px-3 pt-1 border-b-2 text-sm font-medium transition duration-150', 
+                                     currentView === 'agendar' ? 'border-spa-primary text-spa-primary' : 'border-transparent text-gray-600 hover:text-gray-900 hover:border-spa-accent']">
+                            <i class="fas fa-spa mr-2"></i> Reservar Servicio
+                        </a>
+
+                        <button @click="logout" class="bg-gray-100 text-gray-600 hover:bg-gray-200 px-3 py-2 rounded-full text-sm font-medium transition duration-150 border border-gray-300">
+                            <i class="fas fa-sign-out-alt mr-1"></i> Salir
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </nav>
