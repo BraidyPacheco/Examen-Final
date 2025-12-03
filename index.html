@@ -7,4 +7,23 @@
      <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
-</head>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'spa-fondo': '#F5F5DC',
+                        'spa-primary': '#9b6f17', 
+                        'spa-accent': '#9b6f17',
+                        'spa-pastel-blue': '#B0D0D3', 
+                    },
+                    fontFamily: { 
+                        'serif-body': ['"Merriweather"', 'serif'],
+                        'serif-heading': ['"Playfair Display"', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head> 
