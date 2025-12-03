@@ -102,3 +102,41 @@
                 </div>
             </div>
         </nav>
+
+        <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+
+            <div v-if="currentView === 'dashboard'" class="px-4 py-6 sm:px-0">
+                
+                <div class="bg-white p-6 rounded-xl shadow-lg mb-6 border-l-4 border-spa-primary">
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-2 font-serif-heading">
+                        <i class="fas fa-user mr-2 text-spa-primary"></i>
+                        ¡Bienvenido(a), {{ userName }}!
+                    </h2>
+                    <p class="text-gray-500">Glow Spa es un espacio dedicado al bienestar integral, donde combinamos armonía, belleza y relajación en cada uno de nuestros servicios. Hemos creado este entorno para ofrecerte tranquilidad y una experiencia exclusiva diseñada para consentirte. Desde aquí podrás revisar tus citas, mantener el control de tus servicios y continuar disfrutando de nuestras atenciones especializadas.</p>
+
+                    <button @click="changeView('agendar')" class="mt-4 bg-spa-primary text-white font-bold py-2 px-4 rounded-full hover:bg-spa-primary active:bg-spa-primary focus:bg-spa-primary text-sm">
+                    <i class="fas fa-plus mr-2"></i> RESERVAR NUEVA TERAPIA
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div v-for="reserva in reservations" :key="reserva.id" 
+                         class="bg-white p-5 rounded-xl shadow-md border border-gray-200 hover:shadow-lg transition duration-300">
+
+                        <p class="text-sm text-gray-500 mb-1">ID Reserva: #{{ reserva.id }}</p>
+                        <p class="text-2xl font-bold text-gray-800 my-1">{{ reserva.service }}</p>
+
+                        <p class="text-sm text-gray-600 mb-2">
+                            <i class="fas fa-calendar-alt mr-2 text-spa-accent"></i>
+                            Fecha: {{ reserva.date }} | Hora: {{ reserva.time }}
+                        </p>
+
+                        <p class="text-xs text-green-600 font-bold bg-green-100 px-2 py-1 rounded inline-block">{{ reserva.status }}</p>
+                    </div>
+
+                    <div v-if="reservations.length === 0" class="md:col-span-2 bg-gray-100 p-6 rounded-lg text-center text-gray-500">
+                        <i class="fas fa-box-open mr-2"></i> No tiene reservas confirmadas. ¡Agenda un servicio!
+                    </div>
+                </div>
+
+            </div>
