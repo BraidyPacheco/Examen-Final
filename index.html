@@ -318,3 +318,123 @@
     </div>
 
 </div>
+
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+    const { createApp, ref, computed } = Vue;
+
+    createApp({
+        setup() {
+            const currentView = ref('login');
+            const loginEmail = ref('');
+            const loginPassword = ref('');
+            const userName = ref('[Cliente Spa]');
+
+            const currentStep = ref(1);
+            const selectedService = ref(null);
+            const selectedDate = ref('');
+            const selectedTime = ref(null);
+
+            const reservations = ref([]);
+
+            const services = ref([
+                { id: 1, name: 'Masaje Sueco Relajante', duration: '60 min', description: 'Terapia de presión suave para aliviar tensión y relajar todo el cuerpo.' },
+                { id: 2, name: 'Facial Hidratante Profundo', duration: '90 min', description: 'Limpieza e hidratación intensa para renovar y dar iluminosidad al rostro..' },
+                { id: 4, name: 'Spa para Parejas', duration: '90 min', description: 'Experiencia relajante en pareja con terapias diseñadas para desconectar juntos.' },
+                { id: 5, name: 'Uñas Semipermanentes', duration: '90 min', description: 'Manicure con color duradero y acabado brillante por semanas.' },
+                { id: 6, name: 'Uñas Acrílicas o Polygel', duration: '90 min', description: 'Extensión de uñas resistente con acabado elegante y personalizado.' },
+                { id: 7, name: 'Alisados Naturales', duration: '60 min', description: 'Alisado suave y orgánico que reduce frizz sin maltratar el cabello.' },
+                { id: 8, name: 'Corte de Cabello', duration: '60 min', description: 'Corte personalizado según tu estilo y forma del rostro.' },
+                { id: 9, name: 'Exfoliación Corporal', duration: '60 min', description: 'Remoción de células muertas con productos naturales para una piel suave y renovada.' },
+                
+    
+            ]);
+
+            const availableTimes = ref([
+                '08:00','09:00', '10:00', '11:00','12:00',
+                '02:00', '03:00', '04:00', '05:00'
+            ]);
+
+            const minDate = computed(() => {
+                const today = new Date();
+                return today.toISOString().split('T')[0];
+            });
+
+            const isStepTwoComplete = computed(() => {
+                return selectedDate.value && selectedTime.value;
+            });
+
+            const extractUserName = (email) => {
+                if (!email) return 'Cliente';
+                let local = email.split('@')[0];
+                let name = local.split('.')[0];
+                return name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+            };
+
+            const handleLogin = () => {
+                if (loginEmail.value) {
+                    userName.value = extractUserName(loginEmail.value);
+                    currentView.value = 'dashboard';
+                }
+            };
+
+            const logout = () => {
+                currentView.value = 'login';
+                currentStep.value = 1;
+                loginEmail.value = '';
+                loginPassword.value = '';
+                selectedService.value = null;
+                selectedDate.value = '';
+                selectedTime.value = null;
+                userName.value = '[Cliente Spa]';
+            };
+
+            const changeView = (view) => {
+                currentView.value = view;
+                if (view === 'agendar') {
+                    currentStep.value = 1;
+                    selectedService.value = null;
+                    selectedDate.value = '';
+                    selectedTime.value = null;
+                }
+            };
+
+            const selectService = (service) => {
+                selectedService.value = service;
+            };
+
+            const goToStep = (step) => {
+                if (step === 2 && !selectedService.value) return;
+                if (step === 3 && !isStepTwoComplete.value) return;
+                currentStep.value = step;
+            };
+
+            const confirmReservation = () => {
+                reservations.value.push({
+                    id: Math.random().toString(36).substring(2, 9).toUpperCase(),
+                    service: selectedService.value.name,
+                    date: selectedDate.value,
+                    time: selectedTime.value,
+                    status: 'Confirmada (Pago en Recepción)'
+                });
+
+                currentStep.value = 1;
+                selectedService.value = null;
+                selectedDate.value = '';
+                selectedTime.value = null;
+                currentView.value = 'dashboard';
+            };
+
+            return {
+                currentView, loginEmail, loginPassword, userName,
+                currentStep, selectedService, selectedDate, selectedTime,
+                services, availableTimes, reservations,
+                minDate, isStepTwoComplete,
+                handleLogin, logout, changeView, selectService, goToStep, confirmReservation
+            };
+        }
+    }).mount('#app');
+</script>
+
+</body>
+</html>
