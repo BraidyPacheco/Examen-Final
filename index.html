@@ -77,19 +77,19 @@
 
                     <div class="hidden sm:flex sm:space-x-8 items-center">
                         <a @click="changeView('dashboard')" 
-                           :class="['curso-pointer flex items-center px-3 pt-1 border-b-2 text-sm font-medium transition duration-150', 
+                           :class="['cursor-pointer flex items-center px-3 pt-1 border-b-2 text-sm font-medium transition duration-150', 
                                      currentView === 'dashboard' ? 'border-spa-primary text-spa-primary' : 'border-transparent text-gray-600 hover:text-gray-900 hover:border-spa-accent']">
                             <i class="fas fa-calendar-check mr-2"></i> Mis Reservas
                         </a>
 
                         <a @click="changeView('servicios')" 
-                           :class="['curso-pointer flex items-center px-3 pt-1 border-b-2 text-sm font-medium transition duration-150', 
+                           :class="['cursor-pointer flex items-center px-3 pt-1 border-b-2 text-sm font-medium transition duration-150', 
                                      currentView === 'servicios' ? 'border-spa-primary text-spa-primary' : 'border-transparent text-gray-600 hover:text-gray-900 hover:border-spa-accent']">
                             <i class="fas fa-concierge-bell mr-2"></i> Catálogo
                         </a>
 
                         <a @click="changeView('agendar')" 
-                           :class="['curso-pointer flex items-center px-3 pt-1 border-b-2 text-sm font-medium transition duration-150', 
+                           :class="['cursor-pointer flex items-center px-3 pt-1 border-b-2 text-sm font-medium transition duration-150', 
                                      currentView === 'agendar' ? 'border-spa-primary text-spa-primary' : 'border-transparent text-gray-600 hover:text-gray-900 hover:border-spa-accent']">
                             <i class="fas fa-spa mr-2"></i> Reservar Servicio
                         </a>
