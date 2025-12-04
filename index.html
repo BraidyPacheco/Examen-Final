@@ -176,3 +176,21 @@
                 </div>
 
             </div>
+
+             <div v-else-if="currentView === 'servicios'" class="px-4 py-6 sm:px-0">
+                <h1 class="text-3xl font-bold text-gray-800 mb-6 font-serif-heading">
+                    <i class="fas fa-book-open mr-2 text-spa-accent"></i> Nuestro Menú de Bienestar
+                </h1>
+
+                <p class="text-gray-500 mb-8">Descubre las terapias diseñadas para tu completa relajación.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div v-for="service in services" :key="service.id" class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-spa-primary hover:shadow-xl transition duration-300">
+                        <h4 class="text-xl font-semibold text-gray-800 mb-2">{{ service.name }}</h4>
+                        <p class="text-gray-500 mb-3">{{ service.description }}</p>
+                        <div class="flex justify-end text-sm text-gray-600">
+                            <a @click="changeView('agendar')" class="text-spa-primary hover:text-green-600 font-medium cursor-pointer">Reservar →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
